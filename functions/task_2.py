@@ -1,4 +1,3 @@
-from faasr import faasr_get_file, faasr_put_file
 import os
 import pandas as pd
 
