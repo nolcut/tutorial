@@ -1,16 +1,13 @@
 import os
-import pandas as pd
+import csv
+import random
 
-def task_2(output_folder='data', input_1='dataset1.csv', input_2='dataset2.csv', output_1='summed_dataset.csv'):
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
-    input_path_1 = os.path.join(output_folder, input_1)
-    input_path_2 = os.path.join(output_folder, input_2)
-    output_path_1 = os.path.join(output_folder, output_1)
-    faasr_get_file(remote_folder='tutorial', remote_file='dataset1.csv', local_folder=output_folder, local_file='dataset1.csv')
-    faasr_get_file(remote_folder='tutorial', remote_file='dataset2.csv', local_folder=output_folder, local_file='dataset2.csv')
-    dataset1 = pd.read_csv(input_path_1)
-    dataset2 = pd.read_csv(input_path_2)
-    summed_dataset = dataset1 + dataset2
-    summed_dataset.to_csv(output_path_1, index=False)
-    faasr_put_file(local_folder=output_folder, local_file='summed_dataset.csv', remote_folder='tutorial', remote_file='summed_dataset.csv')
+def task_2(folder='tutorial', output1='random_integers_2.csv'):
+    os.makedirs(folder, exist_ok=True)
+    output1_path = os.path.join(folder, output1)
+    random_integers = [random.randint(-100, 100) for _ in range(20)]
+    with open(output1_path, mode='w', newline='') as f:
+        writer = csv.writer(f)
+        for val in random_integers:
+            writer.writerow([val])
+    faasr_put_file(local_file='random_integers_2.csv', remote_folder=folder, remote_file='random_integers_2.csv')
