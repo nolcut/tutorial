@@ -2,9 +2,8 @@
   "ActionList": {
     "task-1": {
       "Arguments": {
-        "output_folder": "data",
-        "output_1": "dataset1.csv",
-        "output_2": "dataset2.csv"
+        "folder": "tutorial",
+        "output1": "random_integers_1.csv"
       },
       "InvokeNext": [
         "task-2"
@@ -15,15 +14,40 @@
     },
     "task-2": {
       "Arguments": {
-        "output_folder": "data", 
-        "input_1": "dataset1.csv", 
-        "input_2": "dataset2.csv", 
-        "output_1": "summed_dataset.csv"
+        "folder": "tutorial",
+        "output1": "random_integers_2.csv"
+      },
+      "InvokeNext": [
+        "task-3"
+      ],
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "task_2"
+    },
+    "task-3": {
+      "Arguments": {
+        "folder": "tutorial",
+        "input1": "random_integers_1.csv",
+        "input2": "random_integers_2.csv"
+      },
+      "InvokeNext": [
+        "task-4"
+      ],
+      "FaaSServer": "GH",
+      "Type": "Python",
+      "FunctionName": "task_3"
+    },
+    "task-4": {
+      "Arguments": {
+        "folder": "tutorial",
+        "input1": "random_integers_1.csv",
+        "input2": "random_integers_2.csv",
+        "output1": "summed_dataset.csv"
       },
       "InvokeNext": [],
       "FaaSServer": "GH",
       "Type": "Python",
-      "FunctionName": "task_2"
+      "FunctionName": "task_4"
     }
   },
   "ComputeServers": {
@@ -44,13 +68,17 @@
   },
   "ActionContainers": {
     "task-1": "ghcr.io/faasr/github-actions-python:latest",
-    "task-2": "ghcr.io/faasr/github-actions-python:latest"
+    "task-2": "ghcr.io/faasr/github-actions-python:latest",
+    "task-3": "ghcr.io/faasr/github-actions-python:latest",
+    "task-4": "ghcr.io/faasr/github-actions-python:latest"
   },
   "FunctionInvoke": "task-1",
   "DefaultDataStore": "S3",
   "FunctionGitRepo": {
-    "task-1": "laurakuo1006/tutorial/functions/task_1.py",
-    "task-2": "laurakuo1006/tutorial/functions/task_2.py"
+    "task-1": "laurakuo1006/tutorial/functions",
+    "task-2": "laurakuo1006/tutorial/functions",
+    "task-3": "laurakuo1006/tutorial/functions",
+    "task-4": "laurakuo1006/tutorial/functions"
   },
   "LoggingDataStore": "S3",
   "FaaSrLog": "FaaSrLog",
