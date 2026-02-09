@@ -3,8 +3,8 @@
     "task-1": {
       "Arguments": {
         "output_folder": "data",
-        "output_1"="dataset1.csv",
-        "output_2"="dataset2.csv"
+        "output_1": "dataset1.csv",
+        "output_2": "dataset2.csv"
       },
       "InvokeNext": [
         "task-2"
@@ -15,10 +15,10 @@
     },
     "task-2": {
       "Arguments": {
-        "output_folder"="data", 
-        "input_1"="dataset1.csv", 
-        "input_2"="dataset2.csv", 
-        "output_1"="summed_dataset.csv"
+        "output_folder": "data", 
+        "input_1": "dataset1.csv", 
+        "input_2": "dataset2.csv", 
+        "output_1": "summed_dataset.csv"
       },
       "InvokeNext": [],
       "FaaSServer": "GH",
