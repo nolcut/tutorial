@@ -18,25 +18,12 @@
         "folder": "tutorial",
         "input1": "dataset1.csv",
         "input2": "dataset2.csv",
-        "output1": "summed_dataset.csv"
-      },
-      "InvokeNext": [
-        "task-3"
-      ],
-      "FaaSServer": "GH",
-      "Type": "Python",
-      "FunctionName": "task_2"
-    },
-    "task-3": {
-      "Arguments": {
-        "folder": "tutorial",
-        "input1": "summed_dataset.csv",
-        "output1": "summed_dataset.csv"
+        "output1": "combined_output.csv"
       },
       "InvokeNext": [],
       "FaaSServer": "GH",
       "Type": "Python",
-      "FunctionName": "task_3"
+      "FunctionName": "task_2"
     }
   },
   "ComputeServers": {
@@ -56,16 +43,14 @@
     }
   },
   "ActionContainers": {
-    "task-1": "ghcr.io/faasr/github-actions-python:dev",
-    "task-2": "ghcr.io/faasr/github-actions-python:dev",
-    "task-3": "ghcr.io/faasr/github-actions-python:dev"
+    "task-1": "ghcr.io/faasr/github-actions-python:latest",
+    "task-2": "ghcr.io/faasr/github-actions-python:latest"
   },
   "FunctionInvoke": "task-1",
   "DefaultDataStore": "S3",
   "FunctionGitRepo": {
-    "task-1": "laurakuo1006/tutorial",
-    "task-2": "laurakuo1006/tutorial/functions",
-    "task-3": "laurakuo1006/tutorial/functions"
+    "task-1": "laurakuo1006/tutorial/functions",
+    "task-2": "laurakuo1006/tutorial/functions"
   },
   "LoggingDataStore": "S3",
   "FaaSrLog": "FaaSrLog",
