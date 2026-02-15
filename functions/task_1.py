@@ -4,10 +4,9 @@ import random
 
 def task_1(folder='tutorial', output1='dataset1.csv', output2='dataset2.csv'):
     os.makedirs(folder, exist_ok=True)
-    length = 100
-    low, high = (1, 1000)
-    data1 = [random.randint(low, high) for _ in range(length)]
-    data2 = [random.randint(low, high) for _ in range(length)]
+    length = 10
+    data1 = [random.uniform(0, 100) for _ in range(length)]
+    data2 = [random.uniform(0, 100) for _ in range(length)]
     path1 = os.path.join(folder, output1)
     path2 = os.path.join(folder, output2)
     with open(path1, 'w', newline='') as f1:
