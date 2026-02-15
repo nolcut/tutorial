@@ -17,7 +17,7 @@ def task_2(folder='tutorial', input1='dataset1.csv', input2='dataset2.csv', outp
                 try:
                     data1.append(float(row[0]))
                 except ValueError:
-                    continue
+                    pass
     with open(path2, newline='') as f2:
         reader2 = csv.reader(f2)
         for row in reader2:
@@ -25,11 +25,10 @@ def task_2(folder='tutorial', input1='dataset1.csv', input2='dataset2.csv', outp
                 try:
                     data2.append(float(row[0]))
                 except ValueError:
-                    continue
-    length = min(len(data1), len(data2))
+                    pass
+    combined = [(d1, d2, d1 + d2) for d1, d2 in zip(data1, data2)]
     with open(out_path, 'w', newline='') as fout:
         writer = csv.writer(fout)
         writer.writerow(['Dataset1', 'Dataset2', 'Sum'])
-        for i in range(length):
-            writer.writerow([data1[i], data2[i], data1[i] + data2[i]])
+        writer.writerows(combined)
     faasr_put_file(local_file='combined_output.csv', remote_folder=folder, remote_file='combined_output.csv')
