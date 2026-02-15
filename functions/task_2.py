@@ -1,18 +1,35 @@
 import os
-import pandas as pd
-import numpy as np
+import csv
 
-def task_2(folder='tutorial', input1='dataset1.csv', input2='dataset2.csv', output1='summed_dataset.csv'):
-    os.makedirs(folder, exist_ok=True)
-    length = 100
-    data1 = pd.DataFrame(np.random.randint(0, 100, size=length), columns=['value'])
-    data2 = pd.DataFrame(np.random.randint(0, 100, size=length), columns=['value'])
-    data1.to_csv(os.path.join(folder, input1), index=False)
-    data2.to_csv(os.path.join(folder, input2), index=False)
+def task_2(folder='tutorial', input1='dataset1.csv', input2='dataset2.csv', output1='combined_output.csv'):
     faasr_get_file(remote_folder=folder, remote_file='dataset1.csv', local_file='dataset1.csv')
     faasr_get_file(remote_folder=folder, remote_file='dataset2.csv', local_file='dataset2.csv')
-    df1 = pd.read_csv(os.path.join(folder, input1))
-    df2 = pd.read_csv(os.path.join(folder, input2))
-    summed = df1['value'] + df2['value']
-    pd.DataFrame(summed, columns=['value']).to_csv(os.path.join(folder, output1), index=False)
-    faasr_put_file(local_file='summed_dataset.csv', remote_folder=folder, remote_file='summed_dataset.csv')
+    os.makedirs(folder, exist_ok=True)
+    path1 = os.path.join(folder, input1)
+    path2 = os.path.join(folder, input2)
+    out_path = os.path.join(folder, output1)
+    data1 = []
+    data2 = []
+    with open(path1, newline='') as f1:
+        reader1 = csv.reader(f1)
+        for row in reader1:
+            if row:
+                try:
+                    data1.append(float(row[0]))
+                except ValueError:
+                    continue
+    with open(path2, newline='') as f2:
+        reader2 = csv.reader(f2)
+        for row in reader2:
+            if row:
+                try:
+                    data2.append(float(row[0]))
+                except ValueError:
+                    continue
+    length = min(len(data1), len(data2))
+    with open(out_path, 'w', newline='') as fout:
+        writer = csv.writer(fout)
+        writer.writerow(['Dataset1', 'Dataset2', 'Sum'])
+        for i in range(length):
+            writer.writerow([data1[i], data2[i], data1[i] + data2[i]])
+    faasr_put_file(local_file='combined_output.csv', remote_folder=folder, remote_file='combined_output.csv')
