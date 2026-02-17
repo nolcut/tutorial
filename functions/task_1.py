@@ -1,22 +1,14 @@
 import os
-import csv
+import json
 import random
 
-def task_1(folder='tutorial', output1='final_output.csv'):
+def task_1(folder='tutorial', output1='dataset1.json', output2='dataset2.json'):
     os.makedirs(folder, exist_ok=True)
-    dataset1 = [random.randint(1, 100) for _ in range(10)]
-    dataset2 = [random.randint(1, 100) for _ in range(10)]
-    if len(dataset1) != len(dataset2):
-        raise ValueError('Data sets are not of equal length.')
-    if not all((isinstance(x, (int, float)) for x in dataset1)):
-        raise TypeError('Dataset1 contains non-numerical values.')
-    if not all((isinstance(x, (int, float)) for x in dataset2)):
-        raise TypeError('Dataset2 contains non-numerical values.')
-    summed = [a + b for a, b in zip(dataset1, dataset2)]
-    output_path = os.path.join(folder, output1)
-    with open(output_path, mode='w', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(['Dataset1', 'Dataset2', 'Sum'])
-        for d1, d2, s in zip(dataset1, dataset2, summed):
-            writer.writerow([d1, d2, s])
-    faasr_put_file(local_file='final_output.csv', remote_folder=folder, remote_file='final_output.csv')
+    data1 = [random.uniform(0, 100) for _ in range(100)]
+    data2 = [random.uniform(0, 100) for _ in range(100)]
+    with open(os.path.join(folder, output1), 'w') as f1:
+        json.dump(data1, f1)
+    with open(os.path.join(folder, output2), 'w') as f2:
+        json.dump(data2, f2)
+    faasr_put_file(local_file='dataset1.json', remote_folder=folder, remote_file='dataset1.json')
+    faasr_put_file(local_file='dataset2.json', remote_folder=folder, remote_file='dataset2.json')
