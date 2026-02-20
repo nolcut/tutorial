@@ -27,7 +27,7 @@
   "ComputeServers": {
     "GH": {
       "FaaSType": "GitHubActions",
-      "UserName": "laurakuo1006",
+      "UserName": "nolcut",
       "UseSecretStore": true,
       "ActionRepoName": "tutorial",
       "Branch": "main"
@@ -47,8 +47,8 @@
   "FunctionInvoke": "task-1",
   "DefaultDataStore": "S3",
   "FunctionGitRepo": {
-    "task-1": "laurakuo1006/tutorial/functions",
-    "task-2": "laurakuo1006/tutorial/functions"
+    "task-1": "laurakuo1006/tutorial",
+    "task-2": "laurakuo1006/tutorial"
   },
   "LoggingDataStore": "S3",
   "FaaSrLog": "FaaSrLog",
