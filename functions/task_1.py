@@ -17,5 +17,4 @@ def task_1(folder='tutorial', output1='datasets.json'):
     print(f'Element-wise sum: {element_wise_sum}')
     print(f'Total sum: {total_sum}')
     print(f'Saved datasets to {output_path}')
-    faasr_put_file(local_file='datasets.json', remote_folder=tutorial, remote_file='datasets.json')
-task_1('tutorial', 'datasets.json')
+    faasr_put_file(local_file='datasets.json', remote_folder='tutorial', remote_file='datasets.json')
