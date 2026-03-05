@@ -47,8 +47,8 @@
   "FunctionInvoke": "task-1",
   "DefaultDataStore": "S3",
   "FunctionGitRepo": {
-    "task-1": "nolcut/tutorial",
-    "task-2": "nolcut/tutorial"
+    "task_1": "nolcut/tutorial",
+    "task_2": "nolcut/tutorial"
   },
   "LoggingDataStore": "S3",
   "FaaSrLog": "FaaSrLog",
